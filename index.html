@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fútbol Elegante</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fútbol Argentino</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#players">Jugadores</a></li>
+                <li><a id="link-games" href="#games">Partidos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Bienvenido a Fútbol Argentino</h2>
+            <p>Todo sobre el fútbol de argentinos en un solo lugar.</p>
+        </section>
+
+        <h2>Jugadores</h2>
+        <section id="players">
+            <!-- Injection createPlayerSection() -->
+        </section>
+        
+        <h2>Partidos</h2>
+        <section id="games">
+            <!-- Injection createFixtureSection() -->
+        </section>
+    </main>
+    <footer id="contact">
+        <p>&copy; 2024 Fútbol Argentino. Todos los derechos reservados.</p>
+    </footer> 
+
+    <script src="main.js"></script>
+</body>
+</html>

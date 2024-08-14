@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #8B0000;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    width: 70%;
+    margin: auto;
+}
+
+
+#players {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap
+}
+
+#players article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1 1 calc(50% - 1rem);
+    max-width: 180px;
+}
+
+#players article p{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#players article img{
+    margin: 7px 0 7px 0;
+}
+
+
+section {
+    margin-bottom: 40px; 
+}
+
+article > img {
+    border-radius: 5px;
+    width: 100px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #8B0000;
+}
+
+article {
+    background-color: #333;
+    padding: 9px;
+    border-radius: 5px;
+    margin-top: 16px;
+}
+
+.article-games{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.article-games img {
+    width: 32px;
+}
+
+footer {
+    background-color: #111;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    color: #aaa;
+}
+
