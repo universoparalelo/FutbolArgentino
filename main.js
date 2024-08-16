@@ -167,7 +167,5 @@ createPlayerSection()
 
 const games = document.getElementById("link-games")
 
-games.addEventListener("click", ()=>{
+createFixtureSection()
 
-    createFixtureSection()
-})
