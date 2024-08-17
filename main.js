@@ -165,12 +165,13 @@ async function createFixtureSection(){
 
 async function main(){
     await createPlayerSection()
-
     createFixtureSection()
 }
 
 main()
 
+
+// ver que hay en local storage
 for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     const value = localStorage.getItem(key);
