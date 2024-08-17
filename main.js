@@ -39,6 +39,31 @@ const leagues = {
         [9568]
 }
 
+// Función para obtener datos del jugador desde Local Storage o API
+const getPlayerFromLocalOrApi = async (id) => {
+    // Verifica si el jugador ya está en Local Storage
+    let jugador = localStorage.getItem(`player_${id}`);
+
+    if (jugador) {
+        if (jugador) {
+            try {
+                // Si está en Local Storage, lo parseamos y lo retornamos
+                return JSON.parse(jugador);
+            } catch (e) {
+                console.log(`Error parsing player data for ID ${id} from Local Storage`, e);
+            }
+        }
+    } else {
+        // Si no está, hacemos la petición a la API
+        jugador = await getPlayer(id);
+        console.log(jugador)
+
+        // Lo guardamos en Local Storage
+        localStorage.setItem(`player_${id}`, JSON.stringify(jugador));
+        return jugador;
+    }
+}
+
 const getPlayer = async (id) => {
     try{
         const response = await fetch(`https://v3.football.api-sports.io/players?id=${id}&season=2024`, {
@@ -67,29 +92,20 @@ const getPlayer = async (id) => {
     }
 }
 
-const getTeam = async (id) => {
-    try{
-        const response = await fetch(`https://v3.football.api-sports.io/teams?id=${id}`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "v3.football.api-sports.io",
-                "x-rapidapi-key": "7a1cfee70b66966794e038bbe6cc1893"
-            }
-        })
-        
-        if (response.status === 200){
-            const datos = await response.json();
-            return {
-                'name': datos.response[0].team.name,
-                'photo': datos.response[0].team.logo 
-            }
-        } else if (response.status === 499 || response.status === 500){
-            console.log(response.message)
-        } else {
-            console.log("Something went wrong!")
-        }
-    } catch(err){
-	    console.log(err);
+async function createPlayerSection(){
+    let players = document.querySelector('#players')
+    
+    for (const player of data) {
+        let jugador = await getPlayerFromLocalOrApi(player);
+
+        articleContent = `
+                <article>
+                    <p><img src="${jugador['team-logo']}" style="width:20px"/> ${jugador['team-name']}</p>    
+                    <img src="${jugador['photo']}" alt="Imagen de ${jugador['name']}"/>
+                    <h3>${jugador['name']}</h3>
+                </article>`;
+    
+        players.innerHTML += articleContent;
     }
 }
 
@@ -105,6 +121,7 @@ const getFixture = async (league, season, team) => {
         
         if (response.status === 200){
             const datos = await response.json();
+            console.log(datos)
             return datos
         } else if (response.status === 499 || response.status === 500){
             console.log(response.message)
@@ -113,23 +130,6 @@ const getFixture = async (league, season, team) => {
         }
     } catch(err){
 	    console.log(err);
-    }
-}
-
-async function createPlayerSection(){
-    let players = document.querySelector('#players')
-    
-    for (const player of data) {
-        let jugador = await getPlayer(player);
-
-        articleContent = `
-                <article>
-                    <p><img src="${jugador['team-logo']}" style="width:20px"/> ${jugador['team-name']}</p>    
-                    <img src="${jugador['photo']}" alt="Imagen de ${jugador['name']}"/>
-                    <h3>${jugador['name']}</h3>
-                </article>`;
-    
-        players.innerHTML += articleContent;
     }
 }
 
@@ -163,9 +163,17 @@ async function createFixtureSection(){
 
 }
 
-createPlayerSection()
+async function main(){
+    await createPlayerSection()
 
-const games = document.getElementById("link-games")
+    createFixtureSection()
+}
 
-createFixtureSection()
+main()
+
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    console.log(`Key: ${key}, Value: ${value}`);
+}
 
