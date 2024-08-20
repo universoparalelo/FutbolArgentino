@@ -1,4 +1,4 @@
-
+// son solo de referencia, no se utiliza esta variable
 const datos = {
     // 26: // seleccion argentina
     //     [],
@@ -24,8 +24,10 @@ const datos = {
         [154] // lionel messi
 }
 
-const data = [2467,6716,30776,5996,6009,19599,217,624, 266,2472,154]
+// ids de los jugadores
+const data = [2467,6716,30776,5996,6009,19599,217,624,2472,154]
 
+// ids de las ligas y los equipos en cada uno
 const leagues = {
     39: // premier legue
         [33,40,47,49,50,66],
@@ -170,11 +172,4 @@ async function main(){
 
 main()
 
-
-// ver que hay en local storage
-for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
-    console.log(`Key: ${key}, Value: ${value}`);
-}
 
